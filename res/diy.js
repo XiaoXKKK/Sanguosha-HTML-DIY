@@ -224,7 +224,7 @@ function createCard(object){
 	var card = document.getElementById('template').getElementsByClassName('card')[0].cloneNode(true);
 	document.getElementById('result').appendChild(card);
 	card.className = 'card ' + object.style;
-	
+	//势力
 	if (object.kingdom) {
 		var kingdom = object.kingdom;
 		var kingdomElement = card.getElementsByClassName('custom-kingdom')[0];
@@ -263,7 +263,7 @@ function createCard(object){
 	if (object.name.font){
 		nameElement.style.fontFamily = object.name.font;
 	}
-	
+	//血量
 	var hp = object.hitpoints;
 	var drained = 0;
 	if (typeof hp == 'string') {
@@ -311,6 +311,7 @@ function createCard(object){
 				.replace(/♦/g, '<i class="suit suit-diamond"></i>')
 				.replace(/♣/g, '<i class="suit suit-club"></i>')
 			);
+            //换成css样式定义的带颜色的花色
 		}
 		
 		var descElement = card.getElementsByClassName('description')[0]
@@ -524,6 +525,7 @@ function createCard(object){
 	}
 }
 
+//window过小时缩放Card
 function zoomCard() {
 	var result = document.getElementById('result');
 	var card = result.getElementsByClassName('card')[0];
@@ -601,6 +603,7 @@ function exportForm(){
 			tagElements[j].checked = tags.indexOf(SKILL_TAGS[i]) >= 0;
 		}
 	}
+    //删掉空的技能
 	while (document.getElementById('panel-skill-' + skills.length)){
 		removeSkill();
 	}
@@ -788,6 +791,8 @@ function createImage() {
 	}
 }
 
+
+//获取水平的标点符号
 var VERTICAL_SYMBOLS = {};
 (function(){
 	var source = '—（）︷︸︹︺【】《》〈〉「」『』，。、：；！？';
@@ -810,6 +815,7 @@ function convertVerticalText(element){
 		convertText(element, /([\x20-\x7e])/g, '<span class="_rendering-rotated-word">$1</span>');
 	}
 }
+
 
 function convertText(element, pattern, replace) {
 	var childNodes = element.childNodes;
